@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Ikenna Iroegbu – Developer & Cloud Security Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<style>
+  :root {
+  --bg:      #080c14;
+  --bg2:     #0c1220;
+  --bg3:     #101828;
+  --surface: #131d2e;
+  --surface2:#182236;
+  --accent:  #00d4ff;
+  --accent2: #0095b3;
+  --gold:    #f59e0b;
+  --text:    #b0c4d8;
+  --white:   #e8f4fd;
+  --muted:   #4a6080;
+  --border:  #1c2d42;
+  --nav-h:   68px;
+  --glow: 0 0 30px rgba(0,212,255,.15);
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'DM Sans',sans-serif;
+  line-height:1.7;
+  overflow-x:hidden;
+}
+h1,h2,h3,h4,h5{font-family:'Syne',sans-serif;color:var(--white);letter-spacing:.02em;}
+a{color:var(--accent);text-decoration:none;transition:color .25s;}
+a:hover{color:#fff;}
+img{max-width:100%;display:block;}
+section{padding:96px 0;}
+.container{max-width:1120px;margin:0 auto;padding:0 24px;}
+
+/* ── SECTION HEADER ── */
+.sh{text-align:center;margin-bottom:64px;}
+.sh-tag{
+  display:inline-block;font-family:'Syne',sans-serif;
+  font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--accent);border:1px solid rgba(0,212,255,.25);
+  padding:5px 16px;margin-bottom:16px;
+}
+.sh h2{
+  font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;
+  text-transform:uppercase;position:relative;
+  display:inline-block;padding-bottom:18px;
+}
+.sh h2::after{
+  content:'';position:absolute;bottom:0;left:50%;
+  transform:translateX(-50%);
+  width:50px;height:2px;
+  background:linear-gradient(90deg,var(--accent),transparent);
+}
+.sh p{max-width:560px;margin:18px auto 0;color:var(--muted);font-size:.95rem;}
+
+/* ── NAVBAR ── */
+nav{
+  position:fixed;top:0;left:0;width:100%;z-index:1000;
+  height:var(--nav-h);
+  background:rgba(8,12,20,.9);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+}
+.nav-in{
+  display:flex;align-items:center;justify-content:space-between;
+  max-width:1120px;margin:0 auto;padding:0 24px;height:100%;
+}
+.logo{font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:800;color:var(--white);}
+.logo span{color:var(--accent);}
+.nav-links{display:flex;gap:28px;list-style:none;}
+.nav-links a{
+  font-family:'Syne',sans-serif;font-size:.78rem;
+  letter-spacing:.12em;text-transform:uppercase;
+  color:var(--muted);transition:color .2s;
+}
+.nav-links a:hover,.nav-links a.active{color:var(--accent);}
+.nav-tog{display:none;flex-direction:column;gap:5px;cursor:pointer;}
+.nav-tog span{width:22px;height:2px;background:var(--white);transition:.3s;}
+
+/* ── HERO ── */
+#hero{
+  min-height:100vh;display:flex;align-items:center;
+  padding-top:var(--nav-h);position:relative;overflow:hidden;
+  background:var(--bg);
+}
+/* animated mesh */
+#hero::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 70% 70% at 80% 40%,rgba(0,212,255,.06) 0%,transparent 70%),
+    radial-gradient(ellipse 40% 40% at 20% 80%,rgba(245,158,11,.04) 0%,transparent 60%);
+  pointer-events:none;
+}
+.grid-bg{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(0,212,255,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,212,255,.04) 1px,transparent 1px);
+  background-size:48px 48px;
+  pointer-events:none;
+}
+/* circuit-style floating dots */
+.dots{position:absolute;inset:0;pointer-events:none;}
+.dots span{
+  position:absolute;width:3px;height:3px;
+  border-radius:50%;background:var(--accent);opacity:0;
+  animation:pulse 4s infinite;
+}
+.dots span:nth-child(1){top:20%;left:15%;animation-delay:0s;}
+.dots span:nth-child(2){top:55%;left:70%;animation-delay:1s;}
+.dots span:nth-child(3){top:75%;left:30%;animation-delay:2s;}
+.dots span:nth-child(4){top:35%;left:85%;animation-delay:1.5s;}
+.dots span:nth-child(5){top:65%;left:50%;animation-delay:3s;}
+@keyframes pulse{0%,100%{opacity:0;transform:scale(1);}50%{opacity:.8;transform:scale(2.5);}}
+
+.hero-body{position:relative;z-index:1;max-width:740px;}
+.hero-pill{
+  display:inline-flex;align-items:center;gap:10px;
+  border:1px solid rgba(0,212,255,.2);padding:7px 18px;
+  margin-bottom:28px;font-size:.78rem;
+  font-family:'Syne',sans-serif;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--accent);
+}
+.hero-pill .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);animation:pulse 1.4s infinite;}
+.hero-body h1{font-size:clamp(2.6rem,6vw,5rem);font-weight:800;line-height:1.05;margin-bottom:18px;}
+.hero-body h1 em{font-style:normal;color:var(--accent);}
+.typed-row{
+  font-family:'Syne',sans-serif;font-size:1.2rem;
+  color:var(--muted);margin-bottom:26px;min-height:1.8em;
+}
+#typed{color:var(--accent);}
+.cur{display:inline-block;width:2px;height:1em;background:var(--accent);margin-left:2px;vertical-align:middle;animation:blink .7s infinite;}
+@keyframes blink{50%{opacity:0;}}
+.hero-body p{color:var(--muted);max-width:520px;margin-bottom:36px;font-size:1rem;}
+
+.btn{
+  display:inline-block;padding:12px 30px;
+  font-family:'Syne',sans-serif;font-size:.8rem;
+  letter-spacing:.12em;text-transform:uppercase;
+  border:1px solid var(--accent);color:var(--accent);
+  transition:.25s;cursor:pointer;background:transparent;
+}
+.btn:hover,.btn-fill{background:var(--accent);color:var(--bg);}
+.btn-fill:hover{background:transparent;color:var(--accent);}
+.btn+.btn{margin-left:14px;}
+
+.socials{display:flex;gap:12px;margin-top:36px;}
+.socials a{
+  width:38px;height:38px;border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--muted);font-size:.9rem;transition:.25s;
+}
+.socials a:hover{border-color:var(--accent);color:var(--accent);box-shadow:var(--glow);}
+
+.stats{display:flex;gap:48px;margin-top:52px;padding-top:36px;border-top:1px solid var(--border);flex-wrap:wrap;}
+.stat-n{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:var(--accent);}
+.stat-l{font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);}
+
+/* ── ABOUT ── */
+#about{background:var(--bg2);}
+.about-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:64px;align-items:center;}
+.about-pic{
+  position:relative;
+}
+.about-pic::before{
+  content:'';position:absolute;
+  top:18px;left:18px;width:100%;height:100%;
+  border:1px solid rgba(0,212,255,.3);z-index:0;
+}
+.about-pic::after{
+  content:'IKENNA.DEV';
+  position:absolute;bottom:-12px;right:-12px;
+  font-family:'Syne',sans-serif;font-size:.65rem;
+  letter-spacing:.25em;color:var(--accent);
+  background:var(--bg2);padding:4px 10px;
+  border:1px solid rgba(0,212,255,.25);z-index:2;
+}
+.avatar-box{
+  position:relative;z-index:1;
+  width:100%;aspect-ratio:4/5;
+  background:var(--surface);
+  display:flex;align-items:center;justify-content:center;
+  font-size:7rem;color:var(--accent);
+  border:1px solid var(--border);overflow:hidden;
+}
+.avatar-box i{opacity:.4;}
+/* scan line */
+.avatar-box::after{
+  content:'';position:absolute;
+  width:100%;height:2px;
+  background:linear-gradient(90deg,transparent,var(--accent),transparent);
+  top:0;animation:scan 3s linear infinite;opacity:.5;
+}
+@keyframes scan{0%{top:0;}100%{top:100%;}}
+
+.about-text .tag{font-family:'Syne',sans-serif;font-size:.72rem;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);}
+.about-text h2{font-size:1.9rem;margin:10px 0 18px;}
+.about-text p{color:var(--muted);margin-bottom:14px;font-size:.97rem;}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:24px 0;}
+.info-row{display:flex;gap:8px;font-size:.88rem;}
+.info-row .k{color:var(--accent);font-weight:600;min-width:72px;}
+.info-row .v{color:var(--text);}
+.status-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.2);
+  padding:3px 10px;font-size:.78rem;color:var(--accent);
+}
+.status-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse 1.4s infinite;}
+
+/* ── SKILLS ── */
+#skills{background:var(--bg);}
+.skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;}
+.skills-col h3{font-size:1.1rem;margin-bottom:28px;display:flex;align-items:center;gap:10px;}
+.skills-col h3 i{color:var(--accent);}
+.sk-item{margin-bottom:20px;}
+.sk-lbl{display:flex;justify-content:space-between;font-size:.88rem;margin-bottom:7px;}
+.sk-lbl span:last-child{color:var(--accent);font-family:'Syne',sans-serif;}
+.sk-track{height:3px;background:var(--border);position:relative;}
+.sk-fill{
+  position:absolute;top:0;left:0;height:100%;width:0;
+  background:linear-gradient(90deg,var(--accent),rgba(0,212,255,.4));
+  transition:width 1.3s cubic-bezier(.4,0,.2,1);
+}
+.sk-fill::after{
+  content:'';position:absolute;right:-1px;top:-3px;
+  width:9px;height:9px;border-radius:50%;
+  background:var(--accent);box-shadow:0 0 8px var(--accent);
+}
+
+/* ── EXPERIENCE ── */
+#experience{background:var(--bg2);}
+.xp-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;}
+.tl-section h3{font-size:1.1rem;margin-bottom:32px;display:flex;align-items:center;gap:10px;}
+.tl-section h3 i{color:var(--accent);}
+.tl{position:relative;padding-left:26px;}
+.tl::before{content:'';position:absolute;left:0;top:0;width:1px;height:100%;background:var(--border);}
+.tl-item{position:relative;margin-bottom:36px;}
+.tl-dot{
+  position:absolute;left:-32px;top:4px;
+  width:11px;height:11px;border-radius:50%;
+  background:var(--accent);border:2px solid var(--bg2);
+  box-shadow:0 0 8px var(--accent);
+}
+.tl-yr{font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);margin-bottom:6px;}
+.tl-item h4{font-size:.97rem;margin-bottom:3px;}
+.tl-item .co{color:var(--muted);font-size:.85rem;margin-bottom:8px;}
+.tl-item p{color:var(--muted);font-size:.88rem;}
+
+/* ── SERVICES ── */
+#services{background:var(--bg);}
+.srv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.srv-card{
+  background:var(--surface);border:1px solid var(--border);
+  padding:36px 28px;position:relative;overflow:hidden;
+  transition:transform .3s,border-color .3s;
+  cursor:default;
+}
+.srv-card::before{
+  content:'';position:absolute;top:0;left:0;
+  width:3px;height:0;
+  background:linear-gradient(180deg,var(--accent),transparent);
+  transition:height .4s;
+}
+.srv-card:hover{transform:translateY(-5px);border-color:rgba(0,212,255,.25);}
+.srv-card:hover::before{height:100%;}
+.srv-num{
+  position:absolute;top:18px;right:20px;
+  font-family:'Syne',sans-serif;font-size:2.5rem;font-weight:800;
+  color:rgba(0,212,255,.06);line-height:1;
+}
+.srv-icon{font-size:2rem;color:var(--accent);margin-bottom:18px;}
+.srv-card h3{font-size:1rem;margin-bottom:10px;}
+.srv-card p{color:var(--muted);font-size:.88rem;}
+
+/* ── PORTFOLIO ── */
+#portfolio{background:var(--bg2);}
+.filter-row{display:flex;gap:10px;justify-content:center;margin-bottom:40px;flex-wrap:wrap;}
+.fb{
+  padding:7px 18px;font-family:'Syne',sans-serif;font-size:.75rem;
+  letter-spacing:.1em;text-transform:uppercase;
+  background:transparent;border:1px solid var(--border);
+  color:var(--muted);cursor:pointer;transition:.25s;
+}
+.fb.active,.fb:hover{border-color:var(--accent);color:var(--accent);}
+.port-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+.p-item{
+  background:var(--surface);border:1px solid var(--border);
+  overflow:hidden;position:relative;
+  transition:border-color .3s;
+}
+.p-item:hover{border-color:rgba(0,212,255,.3);}
+.p-thumb{
+  aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;
+  font-size:3rem;color:var(--accent);position:relative;overflow:hidden;
+}
+.p-thumb i{position:relative;z-index:1;opacity:.5;}
+.p-thumb::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,var(--bg3) 0%,var(--surface2) 100%);
+}
+.p-thumb i{z-index:2;}
+.p-overlay{
+  position:absolute;inset:0;
+  background:rgba(8,12,20,.88);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
+  opacity:0;transition:opacity .3s;
+}
+.p-item:hover .p-overlay{opacity:1;}
+.p-overlay h4{font-size:.95rem;color:var(--white);}
+.p-overlay span{font-size:.75rem;color:var(--accent);text-transform:uppercase;letter-spacing:.1em;}
+.p-overlay a{
+  margin-top:8px;width:36px;height:36px;border:1px solid var(--accent);
+  display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:.9rem;
+  transition:.2s;
+}
+.p-overlay a:hover{background:var(--accent);color:var(--bg);}
+.p-meta{padding:14px 16px 16px;}
+.p-meta h4{font-size:.9rem;margin-bottom:4px;}
+.p-meta p{font-size:.82rem;color:var(--muted);}
+
+/* Python code snippet in portfolio */
+.code-badge{
+  display:inline-flex;align-items:center;gap:5px;
+  background:rgba(0,212,255,.07);border:1px solid rgba(0,212,255,.15);
+  padding:2px 8px;font-size:.72rem;font-family:monospace;color:var(--accent);
+  margin-top:6px;
+}
+
+/* ── PYTHON SECTION ── */
+#python{background:var(--bg);}
+.py-wrap{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:0;overflow:hidden;
+  max-width:820px;margin:0 auto;
+  box-shadow:var(--glow);
+}
+.py-bar{
+  background:var(--bg3);padding:12px 18px;
+  display:flex;align-items:center;gap:8px;
+  border-bottom:1px solid var(--border);
+}
+.py-bar .dot-r{width:11px;height:11px;border-radius:50%;background:#ef4444;}
+.py-bar .dot-y{width:11px;height:11px;border-radius:50%;background:#f59e0b;}
+.py-bar .dot-g{width:11px;height:11px;border-radius:50%;background:#22c55e;}
+.py-bar span{margin-left:10px;font-size:.8rem;color:var(--muted);font-family:monospace;}
+.py-code{padding:28px 32px;font-family:'Courier New',monospace;font-size:.85rem;line-height:1.8;overflow-x:auto;}
+.py-code pre{margin:0;color:var(--text);}
+.kw{color:#c792ea;}
+.fn{color:#82aaff;}
+.st{color:#c3e88d;}
+.cm{color:var(--muted);font-style:italic;}
+.num{color:var(--gold);}
+.py-note{
+  background:rgba(0,212,255,.04);border-top:1px solid var(--border);
+  padding:18px 32px;font-size:.85rem;color:var(--muted);
+}
+.py-note strong{color:var(--accent);}
+
+/* ── TESTIMONIALS ── */
+#testimonials{background:var(--bg2);}
+.testi-single{max-width:680px;margin:0 auto;text-align:center;}
+.testi-single .quote-mark{
+  font-size:5rem;font-family:Georgia,serif;
+  color:var(--accent);opacity:.2;line-height:.8;margin-bottom:16px;
+}
+.testi-single p{
+  font-size:1.1rem;color:var(--text);line-height:1.9;
+  font-style:italic;margin-bottom:32px;
+}
+.testi-author{display:flex;align-items:center;justify-content:center;gap:16px;}
+.t-av{
+  width:50px;height:50px;border-radius:50%;
+  background:var(--accent);color:var(--bg);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;
+}
+.t-name{font-family:'Syne',sans-serif;font-size:1rem;color:var(--white);text-align:left;}
+.t-role{font-size:.82rem;color:var(--muted);}
+.testi-stars{color:var(--gold);font-size:.85rem;margin-bottom:12px;}
+/* motivational quote strip */
+.quote-strip{
+  margin-top:60px;
+  background:var(--surface);border:1px solid var(--border);
+  padding:28px 36px;text-align:center;position:relative;overflow:hidden;
+}
+.quote-strip::before{
+  content:'';position:absolute;left:0;top:0;
+  width:3px;height:100%;background:var(--accent);
+}
+#rotate-quote{font-size:1.05rem;font-style:italic;color:var(--text);transition:opacity .5s;}
+#rotate-author{font-size:.82rem;color:var(--accent);margin-top:8px;font-family:'Syne',sans-serif;letter-spacing:.1em;}
+
+/* ── CONTACT ── */
+#contact{background:var(--bg);}
+.ct-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:60px;}
+.ct-info h3{font-size:1.4rem;margin-bottom:16px;}
+.ct-info p{color:var(--muted);font-size:.95rem;margin-bottom:32px;}
+.ct-row{display:flex;gap:14px;align-items:flex-start;margin-bottom:22px;}
+.ct-icon{
+  width:42px;height:42px;border:1px solid var(--border);flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--accent);font-size:.95rem;transition:.25s;
+}
+.ct-icon:hover{background:rgba(0,212,255,.08);}
+.ct-row h5{font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:3px;}
+.ct-row p{color:var(--text);font-size:.92rem;}
+.ct-form{display:flex;flex-direction:column;gap:18px;}
+.fg{display:flex;flex-direction:column;gap:6px;}
+.fg label{font-family:'Syne',sans-serif;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);}
+.fg input,.fg textarea{
+  background:var(--surface);border:1px solid var(--border);
+  color:var(--white);padding:12px 14px;
+  font-family:'DM Sans',sans-serif;font-size:.92rem;
+  outline:none;transition:border-color .2s;resize:none;
+}
+.fg input:focus,.fg textarea:focus{border-color:var(--accent);}
+.fg textarea{min-height:140px;}
+.form-row-2{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.msg-success{
+  display:none;background:rgba(0,212,255,.07);
+  border:1px solid rgba(0,212,255,.3);
+  color:var(--accent);padding:14px 18px;
+  font-family:'Syne',sans-serif;font-size:.85rem;letter-spacing:.05em;
+}
+
+/* ── FOOTER ── */
+footer{
+  background:#050810;border-top:1px solid var(--border);
+  padding:44px 0;text-align:center;
+}
+.f-logo{font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:800;color:var(--white);margin-bottom:18px;}
+.f-logo span{color:var(--accent);}
+.f-links{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;margin-bottom:18px;}
+.f-links a{font-family:'Syne',sans-serif;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);}
+.f-links a:hover{color:var(--accent);}
+.f-soc{display:flex;gap:10px;justify-content:center;margin-bottom:22px;}
+.f-soc a{
+  width:34px;height:34px;border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--muted);font-size:.82rem;transition:.25s;
+}
+.f-soc a:hover{border-color:var(--accent);color:var(--accent);}
+footer p{color:var(--muted);font-size:.82rem;}
+footer p span{color:var(--accent);}
+
+/* ── BACK TO TOP ── */
+#btt{
+  position:fixed;bottom:26px;right:26px;
+  width:42px;height:42px;background:var(--accent);color:var(--bg);
+  display:flex;align-items:center;justify-content:center;
+  font-size:.9rem;cursor:pointer;
+  opacity:0;visibility:hidden;transition:.3s;z-index:999;
+}
+#btt.show{opacity:1;visibility:visible;}
+
+/* ── ANIMATIONS ── */
+.fi{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease;}
+.fi.v{opacity:1;transform:none;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .about-grid,.skills-grid,.xp-grid,.ct-grid{grid-template-columns:1fr;}
+  .srv-grid{grid-template-columns:1fr 1fr;}
+  .port-grid{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:600px){
+  .nav-links{
+    display:none;flex-direction:column;gap:0;
+    position:absolute;top:var(--nav-h);left:0;width:100%;
+    background:#050810;border-top:1px solid var(--border);
+  }
+  .nav-links.open{display:flex;}
+  .nav-links li{border-bottom:1px solid var(--border);}
+  .nav-links a{display:block;padding:14px 24px;}
+  .nav-tog{display:flex;}
+  .srv-grid,.port-grid{grid-template-columns:1fr;}
+  .form-row-2{grid-template-columns:1fr;}
+  .info-grid{grid-template-columns:1fr;}
+  .btn+.btn{margin-left:0;margin-top:10px;}
+  .stats{gap:24px;}
+}
+
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <div class="nav-in">
+    <div class="logo">Ikenna<span>.</span></div>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#hero" class="active">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Journey</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#portfolio">Projects</a></li>
+      <li><a href="#python">Backend</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-tog" id="nav-tog"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="grid-bg"></div>
+  <div class="dots">
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+  <div class="container">
+    <div class="hero-body fi">
+      <div class="hero-pill"><span class="dot"></span>Open to opportunities</div>
+      <h1>Hi, I'm<br/><em>Ikenna Iroegbu</em></h1>
+      <div class="typed-row">I build <span id="typed"></span><span class="cur"></span></div>
+      <p>A Statistics undergraduate at 300-level with a passion for cloud security, web development, and backend engineering. Turning data-driven thinking into real-world digital solutions.</p>
+      <a href="#portfolio" class="btn btn-fill">View Projects</a>
+      <a href="#contact" class="btn">Hire Me</a>
+      <div class="socials">
+        <a href="https://github.com/KennaKelvin" title="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/ikenna-iroegbu-9a6768236" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" title="Twitter/X"><i class="fab fa-x-twitter"></i></a>
+        <a href="https://wa.link/qw2f18" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      </div>
+      <div class="stats">
+        <div><div class="stat-n" data-target="2">0</div><div class="stat-l">Years Coding</div></div>
+        <div><div class="stat-n" data-target="8">0</div><div class="stat-l">Projects Built</div></div>
+        <div><div class="stat-n" data-target="300">0</div><div class="stat-l">Level Student</div></div>
+        <div><div class="stat-n" data-target="5">0</div><div class="stat-l">Tech Domains</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-pic fi">
+        <div class="avatar-box"> <img src="assets/img/passport.jpeg" alt=""></div>
+      </div>
+      <div class="about-text fi">
+        <div class="tag">Who I am</div>
+        <h2>Statistician Who Codes</h2>
+        <p>I'm Ikenna Iroegbu — a 300-level Statistics undergraduate who caught the programming bug and never looked back. My background in statistics gives me a unique edge: I think analytically before I write a single line of code.</p>
+        <p>I'm currently deep-diving into cloud security engineering, building full-stack web apps, and learning backend development with Python. I believe in learning by shipping — every project on this page is proof of that mindset.</p>
+        <p>I also built a personal study-pathway tracker (check the Projects section) to manage my own learning journey — because if you can't organise your own growth, how do you build for others?</p>
+        <div class="info-grid">
+          <div class="info-row"><span class="k">Name:</span><span class="v">Ikenna Iroegbu</span></div>
+          <div class="info-row"><span class="k">Level:</span><span class="v">300L — Statistics</span></div>
+          <div class="info-row"><span class="k">Email:</span><span class="v">ikennairoegbu6@gmail.com</span></div>
+          <div class="info-row"><span class="k">Location:</span><span class="v">Nigeria</span></div>
+          <div class="info-row"><span class="k">Focus:</span><span class="v">Cloud Security & Web Dev</span></div>
+          <div class="info-row"><span class="k">Status:</span><span class="v"><span class="status-badge"><span class="dot"></span>Available</span></span></div>
+        </div>
+        <a href="assets/IKENNA CV.pdf" class="btn btn-fill">Download CV <i class="fa fa-download" style="margin-left:8px"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <div class="sh fi">
+      <div class="sh-tag">What I know</div>
+      <h2>My Skills</h2>
+      <p>A growing toolkit spanning the full development stack, cloud infrastructure, and statistical thinking.</p>
+    </div>
+    <div class="skills-grid">
+      <div class="skills-col fi">
+        <h3><i class="fa fa-code"></i> Development</h3>
+        <div class="sk-item">
+          <div class="sk-lbl"><span>HTML / CSS / JS</span><span>80%</span></div>
+          <div class="sk-track"><div class="sk-fill" data-w="80"></div></div>
+        </div>
+        <div class="sk-item">
+          <div class="sk-lbl"><span>Python (Backend)</span><span>65%</span></div>
+          <div class="sk-track"><div class="sk-fill" data-w="65"></div></div>
+        </div>
+        <div class="sk-item">
+          <div class="sk-lbl"><span>REST API Design</span><span>60%</span></div>
+          <div class="sk-track"><div class="sk-fill" data-w="60"></div></div>
+        </div>
+        <div class="sk-item">
+          <div class="sk-lbl"><span>React / Frontend Frameworks</span><span>55%</span></div>
+          <div class="sk-track"><div class="sk-fill" data-w="55"></div></div>
+        </div>
+        <div class="sk-item">
+          <div class="sk-lbl"><span>SQL / Databases</span><span>50%</span></div>
+          <div class="sk-track"><div class="sk-fill" data-w="50"></div></div>
+        </div>
+      </div>
+      <div class="skills-col fi">
+        <h3><i class="fa fa-shield-alt"></i> Cloud & Security</h3>
+        <div class="sk-item">
+          <div class="sk-lbl"><span>Cloud Security Concepts</span><span>70%</span></div>
+          <div class="sk-track"><div class="sk-fill" data-w="70"></div></div>
+        </div>
+        <div class="sk-item">
+          <div class="sk-lbl"><span>AWS Fundamentals</span><span>55%</span></div>
+          <div class="sk-track"><div class="sk-fill" data-w="55"></div></div>
+        </div>
+        <div class="sk-item">
+          <div class="sk-lbl"><span>Linux / CLI</span><span>60%</span></div>
+          <div class="sk-track"><div class="sk-fill" data-w="60"></div></div>
+        </div>
+        <div class="sk-item">
+          <div class="sk-lbl"><span>Statistical Analysis / R</span><span>75%</span></div>
+          <div class="sk-track"><div class="sk-fill" data-w="75"></div></div>
+        </div>
+        <div class="sk-item">
+          <div class="sk-lbl"><span>Git / Version Control</span><span>65%</span></div>
+          <div class="sk-track"><div class="sk-fill" data-w="65"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE / EDUCATION -->
+<section id="experience">
+  <div class="container">
+    <div class="sh fi">
+      <div class="sh-tag">My Journey</div>
+      <h2>Learning &amp; Building</h2>
+      <p>No formal certificates yet — just consistent learning, real projects, and unstoppable momentum.</p>
+    </div>
+    <div class="xp-grid">
+      <div class="tl-section fi">
+        <h3><i class="fa fa-laptop-code"></i> What I've Built</h3>
+        <div class="tl">
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-yr">2024 – Present</div>
+            <h4>Cloud Security Engineering</h4>
+            <div class="co">Self-Directed Learning</div>
+            <p>Studying cloud security principles, IAM, threat modelling, and secure architecture on AWS. Currently preparing for professional certification.</p>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-yr">2024</div>
+            <h4>Study Pathway App</h4>
+            <div class="co">Personal Project — HTML/CSS/JS</div>
+            <p>Built a fully functional study tracker with localStorage, dark/light mode, CRUD operations, and motivational quotes rotation. Used daily.</p>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-yr">2023</div>
+            <h4>Frontend Development</h4>
+            <div class="co">Self-Taught — HTML, CSS, JavaScript</div>
+            <p>Started building responsive websites from scratch. Learned layouts, animations, local storage APIs, and form handling without frameworks.</p>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-yr">2023</div>
+            <h4>Python for Backend</h4>
+            <div class="co">Self-Directed — Python / Flask</div>
+            <p>Began learning Python with a focus on building REST APIs, handling requests, and connecting to databases using Flask and SQLite.</p>
+          </div>
+        </div>
+      </div>
+      <div class="tl-section fi">
+        <h3><i class="fa fa-graduation-cap"></i> Education</h3>
+        <div class="tl">
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-yr">2022 – Present</div>
+            <h4>B.Sc. Statistics — 300 Level</h4>
+            <div class="co">University (Nigeria)</div>
+            <p>Studying probability theory, data analysis, regression, and research methods. Statistical thinking directly informs how I approach software problems.</p>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-yr">In Progress</div>
+            <h4>AWS Cloud Practitioner</h4>
+            <div class="co">Amazon Web Services — Certification Track</div>
+            <p>Currently working through the AWS Cloud Practitioner syllabus as a stepping stone toward the Solutions Architect and Security certifications.</p>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-yr">Ongoing</div>
+            <h4>Full Stack Web Development</h4>
+            <div class="co">Online — Self-Paced</div>
+            <p>Following structured curricula through free and paid resources: The Odin Project, freeCodeCamp, and various YouTube deep-dives.</p>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-yr">Upcoming</div>
+            <h4>CompTIA Security+</h4>
+            <div class="co">Planned Certification</div>
+            <p>Next major target after AWS CCP — to formally validate cybersecurity fundamentals alongside practical cloud security knowledge.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <div class="sh fi">
+      <div class="sh-tag">What I offer</div>
+      <h2>Services</h2>
+      <p>Five areas where I can genuinely help you — from a solid, growing foundation of real skills.</p>
+    </div>
+    <div class="srv-grid">
+      <div class="srv-card fi">
+        <div class="srv-num">01</div>
+        <div class="srv-icon"><i class="fa fa-globe"></i></div>
+        <h3>Web Development</h3>
+        <p>Clean, responsive, and fast websites built with HTML, CSS, and JavaScript. No bloated frameworks — just purposeful code that works.</p>
+      </div>
+      <div class="srv-card fi">
+        <div class="srv-num">02</div>
+        <div class="srv-icon"><i class="fa fa-mobile-alt"></i></div>
+        <h3>Mobile App Development</h3>
+        <p>Progressive web apps and mobile-first designs that feel native on any device. Currently expanding into React Native for cross-platform apps.</p>
+      </div>
+      <div class="srv-card fi">
+        <div class="srv-num">03</div>
+        <div class="srv-icon"><i class="fa fa-server"></i></div>
+        <h3>Backend &amp; APIs</h3>
+        <p>Python-powered REST APIs with Flask or FastAPI. From user authentication to database design — building the engine behind your product.</p>
+      </div>
+      <div class="srv-card fi">
+        <div class="srv-num">04</div>
+        <div class="srv-icon"><i class="fa fa-shield-halved"></i></div>
+        <h3>Cloud Security Engineering</h3>
+        <p>Security-first cloud architecture on AWS. IAM policies, secure deployments, threat assessment, and compliance best-practices for your infrastructure.</p>
+      </div>
+      <div class="srv-card fi">
+        <div class="srv-num">05</div>
+        <div class="srv-icon"><i class="fa fa-lightbulb"></i></div>
+        <h3>Tech Consulting</h3>
+        <p>Practical advice on tech stack selection, architecture decisions, and getting your project from idea to MVP — without wasting time or money.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="container">
+    <div class="sh fi">
+      <div class="sh-tag">My Work</div>
+      <h2>Projects</h2>
+      <p>Real things I've shipped — small and growing, but entirely mine.</p>
+    </div>
+    <div class="filter-row fi">
+      <button class="fb active" data-f="all">All</button>
+      <button class="fb" data-f="frontend">Frontend</button>
+      <button class="fb" data-f="backend">Backend</button>
+      <button class="fb" data-f="cloud">Cloud</button>
+    </div>
+    <div class="port-grid" id="pgrid">
+
+      <div class="p-item" data-c="frontend">
+        <div class="p-thumb" style="background:#0c1828;"><i class="fa fa-book-open-reader"></i></div>
+        <div class="p-overlay">
+          <h4>Study Pathway App</h4><span>Frontend</span>
+          <a href="https://kennakelvin.github.io/study/study.html"><i class="fa fa-external-link-alt"></i></a>
+        </div>
+        <div class="p-meta">
+          <h4>Ikenna's Study Pathway</h4>
+          <p>Personal study tracker with CRUD, dark/light mode, quote rotation & localStorage persistence.</p>
+          <span class="code-badge"><i class="fab fa-html5"></i> HTML &nbsp;·&nbsp; CSS &nbsp;·&nbsp; JS</span>
+        </div>
+      </div>
+
+      <div class="p-item" data-c="backend">
+        <div class="p-thumb" style="background:#0c1a14;"><i class="fab fa-python"></i></div>
+        <div class="p-overlay">
+          <h4>Notes REST API</h4><span>Backend · Python</span>
+          <a href="#python"><i class="fa fa-code"></i></a>
+        </div>
+        <div class="p-meta">
+          <h4>Study Notes API (Flask)</h4>
+          <p>A RESTful backend for managing study notes — create, read, update, delete via JSON endpoints.</p>
+          <span class="code-badge"><i class="fab fa-python"></i> Python &nbsp;·&nbsp; Flask &nbsp;·&nbsp; SQLite</span>
+        </div>
+      </div>
+
+      <div class="p-item" data-c="frontend">
+        <div class="p-thumb" style="background:#14100c;"><i class="fa fa-id-card"></i></div>
+        <div class="p-overlay">
+          <h4>Portfolio Website</h4><span>Frontend</span>
+          <a href="#"><i class="fa fa-external-link-alt"></i></a>
+        </div>
+        <div class="p-meta">
+          <h4>This Portfolio</h4>
+          <p>Dark-themed, animated, responsive personal portfolio — built from scratch with zero frameworks.</p>
+          <span class="code-badge"><i class="fab fa-html5"></i> HTML &nbsp;·&nbsp; CSS &nbsp;·&nbsp; JS</span>
+        </div>
+      </div>
+
+      <!-- <div class="p-item" data-c="cloud">
+        <div class="p-thumb" style="background:#080c20;"><i class="fab fa-aws"></i></div>
+        <div class="p-overlay">
+          <h4>AWS IAM Lab</h4><span>Cloud Security</span>
+          <a href="#"><i class="fa fa-external-link-alt"></i></a>
+        </div>
+        <div class="p-meta">
+          <h4>AWS IAM Policy Lab</h4>
+          <p>Hands-on practice configuring least-privilege IAM policies, MFA enforcement, and CloudTrail logging.</p>
+          <span class="code-badge"><i class="fab fa-aws"></i> AWS &nbsp;·&nbsp; IAM &nbsp;·&nbsp; CloudTrail</span>
+        </div>
+      </div> -->
+
+      <!-- <div class="p-item" data-c="backend">
+        <div class="p-thumb" style="background:#14080c;"><i class="fa fa-database"></i></div>
+        <div class="p-overlay">
+          <h4>Student Score Analyser</h4><span>Python · Data</span>
+          <a href="#"><i class="fa fa-external-link-alt"></i></a>
+        </div>
+        <div class="p-meta">
+          <h4>Score Analysis Script</h4>
+          <p>Python CLI tool that reads student CSV data, computes descriptive stats, and exports a summary report.</p>
+          <span class="code-badge"><i class="fab fa-python"></i> Python &nbsp;·&nbsp; pandas &nbsp;·&nbsp; CSV</span>
+        </div>
+      </div>
+
+      <div class="p-item" data-c="cloud">
+        <div class="p-thumb" style="background:#0a0c18;"><i class="fa fa-lock"></i></div>
+        <div class="p-overlay">
+          <h4>Security Hardening Guide</h4><span>Cloud Security</span>
+          <a href="#"><i class="fa fa-external-link-alt"></i></a>
+        </div>
+        <div class="p-meta">
+          <h4>Linux Server Hardening</h4>
+          <p>Step-by-step documentation for hardening a Ubuntu server: SSH keys, UFW firewall, fail2ban, and updates.</p>
+          <span class="code-badge"><i class="fa fa-terminal"></i> Linux &nbsp;·&nbsp; Bash &nbsp;·&nbsp; UFW</span>
+        </div>
+      </div> -->
+
+    </div>
+  </div>
+</section>
+
+<!-- PYTHON BACKEND SKETCH -->
+<section id="python">
+  <div class="container">
+    <div class="sh fi">
+      <div class="sh-tag">Backend Preview</div>
+      <h2>Python Backend Sketch</h2>
+      <p>A minimal Flask REST API — the kind of backend that powers your study notes app or any data-driven project.</p>
+    </div>
+    <div class="py-wrap fi">
+      <div class="py-bar">
+        <span class="dot-r"></span><span class="dot-y"></span><span class="dot-g"></span>
+        <span>api/app.py &nbsp;—&nbsp; Study Notes REST API (Flask + SQLite)</span>
+      </div>
+      <div class="py-code"><pre><span class="cm"># ── Study Notes REST API ──────────────────────────────────────</span>
+<span class="cm"># Author : Ikenna Iroegbu</span>
+<span class="cm"># Stack  : Python · Flask · SQLite · REST</span>
+<span class="cm"># Run    : python app.py  →  http://localhost:5000</span>
+
+<span class="kw">from</span> flask <span class="kw">import</span> Flask, request, jsonify
+<span class="kw">from</span> flask_sqlalchemy <span class="kw">import</span> SQLAlchemy
+<span class="kw">from</span> datetime <span class="kw">import</span> datetime
+
+app = <span class="fn">Flask</span>(__name__)
+app.config[<span class="st">"SQLALCHEMY_DATABASE_URI"</span>] = <span class="st">"sqlite:///notes.db"</span>
+db = <span class="fn">SQLAlchemy</span>(app)
+
+<span class="cm"># ── Model ──────────────────────────────────────────────────────</span>
+<span class="kw">class</span> <span class="fn">Note</span>(db.Model):
+    id      = db.Column(db.Integer, primary_key=<span class="kw">True</span>)
+    date    = db.Column(db.String(<span class="num">20</span>),  nullable=<span class="kw">False</span>)
+    topic   = db.Column(db.String(<span class="num">120</span>), nullable=<span class="kw">False</span>)
+    note    = db.Column(db.Text,         nullable=<span class="kw">False</span>)
+    points  = db.Column(db.Text,         nullable=<span class="kw">True</span>)
+    created = db.Column(db.DateTime,     default=datetime.utcnow)
+
+    <span class="kw">def</span> <span class="fn">to_dict</span>(self):
+        <span class="kw">return</span> {
+            <span class="st">"id"</span>: self.id, <span class="st">"date"</span>: self.date,
+            <span class="st">"topic"</span>: self.topic, <span class="st">"note"</span>: self.note,
+            <span class="st">"points"</span>: self.points,
+            <span class="st">"created"</span>: self.created.isoformat()
+        }
+
+<span class="cm"># ── Routes ─────────────────────────────────────────────────────</span>
+<span class="fn">@app.route</span>(<span class="st">"/notes"</span>, methods=[<span class="st">"GET"</span>])
+<span class="kw">def</span> <span class="fn">get_notes</span>():
+    notes = Note.query.<span class="fn">order_by</span>(Note.created.desc()).<span class="fn">all</span>()
+    <span class="kw">return</span> <span class="fn">jsonify</span>([n.<span class="fn">to_dict</span>() <span class="kw">for</span> n <span class="kw">in</span> notes])
+
+<span class="fn">@app.route</span>(<span class="st">"/notes"</span>, methods=[<span class="st">"POST"</span>])
+<span class="kw">def</span> <span class="fn">create_note</span>():
+    data = request.<span class="fn">get_json</span>()
+    note = <span class="fn">Note</span>(
+        date=data[<span class="st">"date"</span>], topic=data[<span class="st">"topic"</span>],
+        note=data[<span class="st">"note"</span>],  points=data.get(<span class="st">"points"</span>, <span class="st">""</span>)
+    )
+    db.session.<span class="fn">add</span>(note)
+    db.session.<span class="fn">commit</span>()
+    <span class="kw">return</span> <span class="fn">jsonify</span>(note.<span class="fn">to_dict</span>()), <span class="num">201</span>
+
+<span class="fn">@app.route</span>(<span class="st">"/notes/&lt;int:note_id&gt;"</span>, methods=[<span class="st">"PUT"</span>])
+<span class="kw">def</span> <span class="fn">update_note</span>(note_id):
+    note = Note.query.<span class="fn">get_or_404</span>(note_id)
+    data = request.<span class="fn">get_json</span>()
+    note.note   = data.get(<span class="st">"note"</span>,   note.note)
+    note.points = data.get(<span class="st">"points"</span>, note.points)
+    db.session.<span class="fn">commit</span>()
+    <span class="kw">return</span> <span class="fn">jsonify</span>(note.<span class="fn">to_dict</span>())
+
+<span class="fn">@app.route</span>(<span class="st">"/notes/&lt;int:note_id&gt;"</span>, methods=[<span class="st">"DELETE"</span>])
+<span class="kw">def</span> <span class="fn">delete_note</span>(note_id):
+    note = Note.query.<span class="fn">get_or_404</span>(note_id)
+    db.session.<span class="fn">delete</span>(note)
+    db.session.<span class="fn">commit</span>()
+    <span class="kw">return</span> <span class="fn">jsonify</span>({<span class="st">"message"</span>: <span class="st">"Note deleted"</span>}), <span class="num">200</span>
+
+<span class="kw">if</span> __name__ == <span class="st">"__main__"</span>:
+    <span class="kw">with</span> app.<span class="fn">app_context</span>():
+        db.<span class="fn">create_all</span>()   <span class="cm"># create tables on first run</span>
+    app.<span class="fn">run</span>(debug=<span class="kw">True</span>)</pre>
+      </div>
+      <div class="py-note">
+        <strong>What this does:</strong> A complete REST API for your study notes app — GET all notes, POST new note, PUT to edit, DELETE to remove. Drop your frontend's <code>localStorage</code> calls and point them here instead. Install with: <code>pip install flask flask-sqlalchemy</code>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="container">
+    <div class="sh fi">
+      <div class="sh-tag">Kind Words</div>
+      <h2>Testimonial</h2>
+    </div>
+    <div class="testi-single fi">
+      <div class="testi-stars">
+        <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+      </div>
+      <div class="quote-mark">"</div>
+      <p>Ikenna delivered exactly what we needed — clean, fast, and well-structured. What impressed me most was his attention to detail and the way he thought through the problem before writing a single line of code. Highly recommend.</p>
+      <div class="testi-author">
+        <div class="t-av">AB</div>
+        <div>
+          <div class="t-name">A. Bright</div>
+          <div class="t-role">Client</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Rotating motivational quote from your study app -->
+    <div class="quote-strip fi">
+      <div id="rotate-quote">"Pathway of success can never be easy"</div>
+      <div id="rotate-author">— Ikenna Iroegbu</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="sh fi">
+      <div class="sh-tag">Let's connect</div>
+      <h2>Contact Me</h2>
+      <p>Have a project, collaboration, or just want to say hello? My inbox is open.</p>
+    </div>
+    <div class="ct-grid">
+      <div class="fi">
+        <h3>Get In Touch</h3>
+        <p>I'm currently available for freelance projects, internships, and part-time work. Whether it's a quick question or a full project — reach out.</p>
+        <div class="ct-row">
+          <div class="ct-icon"><i class="fa fa-map-marker-alt"></i></div>
+          <div><h5>Location</h5><p>Nigeria</p></div>
+        </div>
+        <div class="ct-row">
+          <div class="ct-icon"><i class="fa fa-envelope"></i></div>
+          <div><h5>Email</h5><p>ikennairoegbu6@gmail.com</p></div>
+        </div>
+        <div class="ct-row">
+          <div class="ct-icon"><i class="fa fa-clock"></i></div>
+          <div><h5>Availability</h5><p>Mon – Sat, flexible hours</p></div>
+        </div>
+        <div class="ct-row">
+          <div class="ct-icon"><i class="fa fa-graduation-cap"></i></div>
+          <div><h5>Student Status</h5><p>300 Level — Statistics (Active)</p></div>
+        </div>
+      </div>
+      <div class="fi">
+        <div class="ct-form">
+          <div class="form-row-2">
+            <div class="fg"><label>Your Name</label><input type="text" id="fn" placeholder="Jane Doe"/></div>
+            <div class="fg"><label>Email</label><input type="email" id="fe" placeholder="jane@example.com"/></div>
+          </div>
+          <div class="fg"><label>Subject</label><input type="text" id="fs" placeholder="Project enquiry"/></div>
+          <div class="fg"><label>Message</label><textarea id="fm" placeholder="Tell me about your project or idea..."></textarea></div>
+          <div class="msg-success" id="msg-ok">✓ Message sent! I'll get back to you soon.</div>
+          <button class="btn btn-fill" style="display:block;text-align:center;width:100%" onclick="sendMsg()">
+            Send Message &nbsp;<i class="fa fa-paper-plane"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="f-logo">Ikenna<span>.</span></div>
+    <div class="f-links">
+      <a href="#hero">Home</a><a href="#about">About</a><a href="#skills">Skills</a>
+      <a href="#experience">Journey</a><a href="#services">Services</a>
+      <a href="#portfolio">Projects</a><a href="#python">Backend</a><a href="#contact">Contact</a>
+    </div>
+    <div class="f-soc">
+      <a href="#"><i class="fab fa-github"></i></a>
+      <a href="#"><i class="fab fa-linkedin-in"></i></a>
+      <a href="#"><i class="fab fa-x-twitter"></i></a>
+      <a href="#"><i class="fab fa-whatsapp"></i></a>
+    </div>
+    <p>&copy; 2024 <span>Ikenna Iroegbu</span>. Built with purpose. &nbsp;·&nbsp; "Pathway of success can never be easy"</p>
+  </div>
+</footer>
+
+<div id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fa fa-arrow-up"></i></div>
+</body>
+</html>
+<script>
+  // ── Typed animation ──
+const words = ['Secure Cloud Systems','REST APIs in Python','Responsive Websites','Mobile-First Apps','Data-Driven Solutions'];
+let wi=0,ci=0,del=false;
+const tel=document.getElementById('typed');
+function type(){
+  const w=words[wi];
+  if(!del){
+    tel.textContent=w.slice(0,++ci);
+    if(ci===w.length){setTimeout(()=>{del=true;type();},2000);return;}
+  }else{
+    tel.textContent=w.slice(0,--ci);
+    if(ci===0){del=false;wi=(wi+1)%words.length;}
+  }
+  setTimeout(type,del?55:100);
+}
+type();
+
+// ── Rotating quotes (from your study app) ──
+const quotes=[
+  {q:"Pathway of success can never be easy",a:"Ikenna Iroegbu"},
+  {q:"As you start to walk on the way, the way appears",a:"Rumi"},
+  {q:"Keep calm when things don't go according to your expectations! Beautiful things always meet friction",a:"Ernest Agyemang Yeboah"},
+  {q:"Straight roads do not make skillful drivers",a:"Paula Coelho"},
+  {q:"So you had a bad day. Kick it aside and be grateful for one less bad day to pass through",a:"Richelle E. Goodrich"},
+  {q:"The way to get started is to quit talking and begin doing.",a:"Walt Disney"},
+  {q:"Never think of pain or danger or enemies a moment longer than is necessary to fight them",a:"Ayn Rand"}
+];
+let qi=0;
+function rotQ(){
+  const rq=document.getElementById('rotate-quote');
+  const ra=document.getElementById('rotate-author');
+  rq.style.opacity=0;
+  setTimeout(()=>{
+    qi=(qi+1)%quotes.length;
+    rq.textContent=`"${quotes[qi].q}"`;
+    ra.textContent=`— ${quotes[qi].a}`;
+    rq.style.opacity=1;
+  },500);
+}
+setInterval(rotQ,8000);
+
+// ── Scroll observers ──
+const obs=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(!e.isIntersecting)return;
+    e.target.classList.add('v');
+    // skill bars
+    e.target.querySelectorAll('.sk-fill').forEach(b=>b.style.width=b.dataset.w+'%');
+    // counters
+    e.target.querySelectorAll('[data-target]').forEach(c=>{
+      const t=+c.dataset.target;let n=0;
+      const s=Math.max(1,Math.ceil(t/40));
+      const iv=setInterval(()=>{
+        n=Math.min(n+s,t);
+        c.textContent=n+(t===300?'L':'+');
+        if(n>=t)clearInterval(iv);
+      },35);
+    });
+    obs.unobserve(e.target);
+  });
+},{threshold:.15});
+document.querySelectorAll('.fi').forEach(el=>obs.observe(el));
+
+// ── Navbar active ──
+const secs=document.querySelectorAll('section[id]');
+const nas=document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll',()=>{
+  document.getElementById('btt').classList.toggle('show',scrollY>400);
+  let cur='';
+  secs.forEach(s=>{if(scrollY>=s.offsetTop-100)cur=s.id;});
+  nas.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+cur));
+});
+
+// ── Mobile nav ──
+document.getElementById('nav-tog').addEventListener('click',()=>
+  document.getElementById('nav-links').classList.toggle('open'));
+nas.forEach(a=>a.addEventListener('click',()=>
+  document.getElementById('nav-links').classList.remove('open')));
+
+// ── Portfolio filter ──
+document.querySelectorAll('.fb').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.fb').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const f=btn.dataset.f;
+    document.querySelectorAll('.p-item').forEach(i=>{
+      i.style.display=(f==='all'||i.dataset.c===f)?'block':'none';
+    });
+  });
+});
+
+// ── Contact form ──
+function sendMsg(){
+  const n=document.getElementById('fn').value.trim();
+  const e=document.getElementById('fe').value.trim();
+  const m=document.getElementById('fm').value.trim();
+  if(!n||!e||!m){alert('Please fill in name, email and message.');return;}
+  document.getElementById('msg-ok').style.display='block';
+  ['fn','fe','fs','fm'].forEach(id=>document.getElementById(id).value='');
+  setTimeout(()=>document.getElementById('msg-ok').style.display='none',5000);
+}
+
+</script>
