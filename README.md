@@ -1,2 +1,2 @@
 # profile
-Click <a href="index (1).html">here</a> to find out more bout me
+Click <a href="index.html">here</a> to find out more bout me
